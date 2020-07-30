@@ -1,4 +1,5 @@
 //jshint esversion:6
+import { addZero } from './sup.js';
 export const videoPlayerInit = () => {
     const videoPlayer = document.querySelector('.video-player');
     const videoButtonPlay = document.querySelector('.video-button__play');
@@ -7,7 +8,7 @@ export const videoPlayerInit = () => {
     const videoProgress = document.querySelector('.video-progress');
     const videoTimeTotal = document.querySelector('.video-time__total');
     const videoVolume = document.querySelector('.video-volume');
-    
+    const playerBtn = document.querySelectorAll('.player-btn');
 
     const toggleIcon = () => { 
         if(videoPlayer.paused){
@@ -30,7 +31,6 @@ export const videoPlayerInit = () => {
         videoPlayer.currentTime = 0;
 
     };
-    const addZero = n => n < 10 ? '0'+ n : n;
 
     videoPlayer.addEventListener('click', togglePlay);
     videoButtonPlay.addEventListener('click', togglePlay);
@@ -66,4 +66,10 @@ export const videoPlayerInit = () => {
     videoVolume.addEventListener('input', () => {
         videoPlayer.volume = videoVolume.value/100;
     });
+
+    playerBtn.forEach((btn, i) => btn.addEventListener('click', () => {
+        if(!videoPlayer.paused){
+            videoPlayer.pause();
+        }
+    }));
 };

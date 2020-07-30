@@ -8,6 +8,7 @@ export const radioPlayerInit = () => {
     const radioHeaderBig = document.querySelector('.radio-header__big');
     const radioStop = document.querySelector('.radio-stop');
     const radioVolume = document.querySelector('.radio-volume');
+    const playerBtn = document.querySelectorAll('.player-btn');
     const audio = new Audio();
     audio.type = 'audio/aac';
     radioStop.disabled = true;
@@ -58,4 +59,10 @@ export const radioPlayerInit = () => {
     radioVolume.addEventListener('input', () => {
         audio.volume = radioVolume.value/100;
     });
+
+    playerBtn.forEach((btn, i) => btn.addEventListener('click', () => {
+        if(!audio.paused){
+            audio.pause();
+        }
+    }));
 };
